@@ -9,9 +9,10 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.core.Ordered;
 
 @Aspect
-public class FourAdviceTest {
+public class FourAdviceTest implements Ordered {
 	//定义around增强处理
 	@Around("execution (* com.spring.aop.AspectJQS.*.*(..))")
 	public Object processTx(ProceedingJoinPoint pj) throws Throwable {
@@ -59,5 +60,10 @@ public class FourAdviceTest {
 		System.out.println("After增强：目标方法为：" + jp.getSignature().getName());
 		System.out.println("After增强：目标参数为：" + Arrays.toString(jp.getArgs()));
 		System.out.println("After增强：目标对象为：" + jp.getTarget());
+	}
+
+	@Override
+	public int getOrder() {
+		return 2;
 	}
 }
