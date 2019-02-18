@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"> 
+<bean id="p1" class="com.spring.org.aboutBean.person" scope="request">
+	<property name="name">
+		<value>赖金川</value>
+	</property>
+	<property name="age" >
+		<value>13</value>
+	</property>
+	<property name="hight">
+		<value>22</value>
+	</property>
+</bean>
+</beans>

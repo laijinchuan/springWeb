@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"> 
+   <bean id="demo" class="com.spring.org.testFactory.demo"></bean>
+ <bean id="cat"  factory-bean="demo" factory-method="getBeing">
+ 	<constructor-arg value="cat"></constructor-arg>
+ 	<property name="name" value="小猫"></property>
+ 	<property name="age" value="14" ></property>
+ </bean>
+ <bean id="dog"  factory-bean="demo" factory-method="getBeing">
+ 	<constructor-arg value="dog"></constructor-arg>
+ 	<property name="name" value="小狗"></property>
+ 	<property name="age" value="16" ></property>
+ </bean>
+ 
+ <!-- 指定abstrac=true 定义抽象bean -->
+ <bean id="toolTemplate" abstract="true">
+ 	<property name="name" value="啦啦啦"></property>
+ 	<property name="age" ref="dog"></property>
+ </bean>
+ <!-- 通过指定parent可以获取父bean继承得到配置信息 -->
+ <bean id="cheese" class="com.ljc.demo" parent="toolTemplate"></bean>
+ <bean id="cheese2" class="com.ljc.demo2" parent="toolTemplate"></bean>
+</beans>

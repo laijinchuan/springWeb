@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"> 
+<bean id="person1" class="com.spring.org.aboutBean.person"></bean>
+<bean id="person2" class="com.spring.org.aboutBean.person"></bean>
+<bean id="basicData" class="com.spring.org.basic.basicDataType">
+	<property name="name">
+		<value>我喜欢你</value>
+	</property>
+	<property name="score">
+		<map key-type="java.lang.String">
+			<entry key="age" value="12" ></entry>
+			<entry key="name" value="赖金川" ></entry>
+			<entry key="sex" value="男" ></entry>
+		</map>
+	</property>
+	<property name="alleas">
+		<map >
+			<entry key="年龄" value-ref="person1"></entry>
+			<entry key="名字" value-ref="person2"></entry>
+		</map>
+	</property>
+	<property name="pro">
+		<props>
+			<prop key="high">122cm</prop>
+			<prop key="wight">70kg</prop>
+		</props>
+	</property>
+	<property name="set">
+		<set>
+			<value>这是一个自我增长的字符串</value>
+			<bean class="com.spring.org.aboutBean.person"></bean>
+			<ref bean="person1"/>
+			<list>
+				<value>20</value>
+				<set>
+					<value>孙剑风</value>
+				</set>
+			</list>
+		</set>
+	</property>
+	<property name="inre">
+		<list>
+			<value>1</value>
+			<value>2</value>
+			<value>3</value>
+		</list>
+	</property>
+</bean>
+<bean id="test" class="com.spring.org.basic.test">
+	<property name="person1.name">
+		<value>悟空</value>
+	</property>
+</bean>
+</beans>

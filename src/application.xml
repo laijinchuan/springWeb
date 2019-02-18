@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+     <!-- 相当于代码 -->
+    <!-- 	JFrame win = new JFrame("我的窗口");
+    win.setVisible(true);
+	} -->
+<bean id="win" class="javax.swing.JFrame">
+	<constructor-arg value="我的窗口" type="java.lang.String"  />
+	<property name="visible" value="true"></property>
+</bean>
+<bean id="jta" class="javax.swing.JTextArea">
+	<constructor-arg name="7" type="int"></constructor-arg>
+	<constructor-arg name="40" type="int"></constructor-arg>
+</bean>
+<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+	<property name="targetObject" ref="win"></property>
+	<property name="targetMethod" value="add"></property>
+	<property name="arguments">
+		<list>
+			<bean class="javax.swing.JScrollPane">
+				<constructor-arg ref="jta"></constructor-arg>
+			</bean> 
+		</list>
+		
+	</property>
+</bean>
+</beans>

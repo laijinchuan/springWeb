@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+   <bean id="steelAxe" class="com.spring.org.service.Axe"></bean>
+   <bean id="chinese" class="com.spring.extend.impl.Chinese"
+   	init-method="init" p:axe-ref="steelAxe" p:name="依赖注入的值">
+   </bean>
+   <bean class="com.spring.extend.util.MyBeanFactoryPostProcesser"></bean>
+   <bean class="com.spring.extend.util.MyBeanFactoryPostProcesser2"></bean>
+</beans>
