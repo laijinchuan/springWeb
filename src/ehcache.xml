@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<diskStore path="java.io.tmpdir" />
+	<!-- 配置默认缓存区 -->
+	<defaultCache 
+		maxElementsInMemory="1000"
+		eternal="false"
+		timeToLiveSeconds="120"
+		timeToIdleSeconds="120"
+		maxElementsOnDisk="1000000"
+		diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU"
+	/>
+	<cache name="users"
+		maxElementsInMemory="10000"
+		eternal="false"
+		overflowToDisk="true"
+		timeToIdleSeconds="300"
+		timeToLiveSeconds="600"/>
+	<cache name="user1"
+		maxElementsInMemory="10000"
+		eternal="false"
+		overflowToDisk="true"
+		timeToIdleSeconds="300"
+		timeToLiveSeconds="600"/>
+	<cache name="user2"
+		maxElementsInMemory="10000"
+		eternal="false"
+		overflowToDisk="true"
+		timeToIdleSeconds="300"
+		timeToLiveSeconds="600"/>
+</ehcache>
