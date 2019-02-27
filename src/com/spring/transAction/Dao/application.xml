@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd
+        ">
+<!-- 容器管理的JTA全局事务管理器的配置文件 -->
+<!-- 配置jndi数据源的bean，其中jndiName指容器管理数据源的JNDI -->
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"  destroy-method="close"
+	p:driverClass="com.mysql.jdbc.Driver"
+	p:jdbcUrl="jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8"
+	p:user="root"
+	p:password="123"
+	p:maxPoolSize="40"
+	p:minPoolSize="2"
+	p:initialPoolSize="2"
+	></bean>
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
+p:dataSource-ref="dataSource"></bean>
+<bean id="newDao" class="com.spring.transAction.Dao.NewDaoImpl" p:ds-ref="dataSource">
+</bean>
+<!-- 配置事务增强处理bean，指定事务管理器 -->
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<!-- 用于配置详细的事务定义 -->
+	<tx:attributes>
+		<!-- 所有以get方法开头的是可读的 -->
+		<tx:method name="get*" read-only="true"/>
+		<!-- 其他方法指定默认的事务设置，指定超时时长为5s -->	
+		<tx:method name="*" isolation="DEFAULT" propagation="REQUIRED" timeout="5"/>
+	</tx:attributes>
+</tx:advice>
+<!-- 配置aop的元素 -->
+<aop:config>
+	<!-- 配置一个切入点，用于匹配Dao包下的以Impl结尾的类里的方法的执行 -->
+	<aop:pointcut expression="execution (* com.spring.transAction.Dao.*Impl.*(..))" id="mypoint"/>
+	<!-- 指定在myPointcut切入点 应用txAdvice事务增强处理 -->	
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="mypoint"/>
+</aop:config>
+<!-- 使用jtaTransactionManager类，该类实现了 platfromTransactionManager -->
+<!-- <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"></bean> -->
+</beans>

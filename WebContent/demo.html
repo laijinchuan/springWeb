@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	div{
+		hight:500px;
+		wight:500px;
+		position: center;
+		background-color: gray;
+	}
+</style>
+<meta charset="UTF-8">
+<title>应该有个标题</title>
+<script type="text/javascript" src="js/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		  $("p").click(function(){
+		    $("#input").val("这不是输入框");
+		  });
+		});
+</script>
+</head>
+<body>
+	<p class="p1">点我就会消失</p>
+	<p class="p1">继续消失</p>
+	<p>也会消失</p>
+	<button style="background-color: blue">这是个按钮</button>
+	<ul>
+		<li>第一</li>
+		<li>第二</li>
+		<li>第三</li>
+	</ul>
+	<input type="text" id="input" value="这是输入框">
+	<a href="www.baidu.com" id="baidu">百度一下，你就知道</a>
+	<button id="button">点我切换网址</button>
+</body>
+</body>
+
+</html>
